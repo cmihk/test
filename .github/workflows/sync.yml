@@ -5,8 +5,8 @@ permissions:
 
 on:
   schedule:
-    - cron: "0 0 * * *" # every day
-  workflow_dispatch:
+    - cron: "0 0 * * *" # 每天凌晨 0 点自动执行
+  workflow_dispatch: # 手动执行
 
 jobs:
   sync_latest_from_upstream:
@@ -24,14 +24,14 @@ jobs:
         id: sync
         uses: aormsby/Fork-Sync-With-Upstream-action@v3.4.1
         with:
-          upstream_sync_repo: dishao123/test
-          upstream_sync_branch: main
-          target_sync_branch: main
-          target_repo_token: ${{ secrets.GITHUB_TOKEN }} # automatically generated, no need to set
-          git_config_user: github-actions[bot]
-          git_config_email: github-actions[bot]@users.noreply.github.com
+          upstream_sync_repo: dishao123/test # 上游仓库
+          upstream_sync_branch: main # 上游分支
+          target_sync_branch: main # 本地分支
+          target_repo_token: ${{ secrets.GITHUB_TOKEN }} # 使用 Github 自带的 Token 来执行任务
+          git_config_user: github-actions[bot] # 使用机器人账号完成同步
+          git_config_email: github-actions[bot]@users.noreply.github.com # 机器人邮箱
 
-          # Set test_mode true to run tests instead of the true action!!
+          # 关闭测试模式
           test_mode: false
 
       - name: Sync check
