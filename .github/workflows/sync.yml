@@ -27,6 +27,8 @@ jobs:
           upstream_sync_branch: main
           target_sync_branch: main
           target_repo_token: ${{ secrets.GITHUB_TOKEN }} # automatically generated, no need to set
+          git_config_user: github-actions[bot]
+          git_config_email: github-actions[bot]@users.noreply.github.com
 
           # Set test_mode true to run tests instead of the true action!!
           test_mode: false
